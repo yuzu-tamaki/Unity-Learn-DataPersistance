@@ -7,7 +7,8 @@ using System.IO;
 public class MainManager : MonoBehaviour
 {
     public static MainManager Instance;
-    //VARIABLES FOR CURRENT SESSIONS
+    
+    //VARIABLES FOR CURRENT SESSION
     public string playerName;
     public int currentScore;
     
@@ -30,12 +31,16 @@ public class MainManager : MonoBehaviour
         Instance = this;
         
         DontDestroyOnLoad(gameObject);
+
         LoadHighScore();
+        //Do this, or the code wouldn't know a high score even exists in MainManager
     }
 
+    //LOAD GAME SCENE
     public void StartGame()
     {
         SceneManager.LoadScene(1);
+        //ensure your scnees are numbered right in File > Build Settings
     }
 
     //DATA PERSISTANCE ACROSS SCENES PART
@@ -47,6 +52,7 @@ public class MainManager : MonoBehaviour
 
     }
 
+    //This looks different from the tutorial as we need to capture two arguments
     public void SaveHighScore(int currentScore, string playerName)
     {
         //First, create a new instance of the save data 

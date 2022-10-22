@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    //I renamed this from MainManager to GameManager because all the code actually controls the game
     public Brick BrickPrefab;
     public int LineCount = 6;
     public Rigidbody Ball;
@@ -62,7 +63,7 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    
+
 
     void AddPoint(int point)
     {
@@ -81,14 +82,17 @@ public class GameManager : MonoBehaviour
     //CHECK IF PLAYER HAS BEAT HIGH SCORE
     void CheckBestPlayer()
     {
-        //IF PLAYER BEATS HIGH SCORE, SAVE THEIR NAME
+        //IF PLAYER BEATS HIGH SCORE, SAVE THEIR NAME AND HIGH SCORE
         if (m_Points > MainManager.Instance.highScore)
         {
+            //Set MainManager to the new high score and name
             MainManager.Instance.highScore = m_Points;
             MainManager.Instance.highScoreName = MainManager.Instance.playerName;
             
+            //This is the actual function that does the saving to MainManager
             MainManager.Instance.SaveHighScore(MainManager.Instance.highScore, MainManager.Instance.highScoreName);
-            //Save player's highscore and name
+           
+            //Debug Log for my own testing
             Debug.Log("New high score " + MainManager.Instance.highScore);
 
         }
